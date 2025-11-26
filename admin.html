@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sunset Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+        .admin-panel {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px;
+        }
+        .logo {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+        }
+        .btn-login:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .edit-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .preview-box {
+            border: 2px dashed #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f0f0f0;
+            margin-top: 10px;
+        }
+        .save-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: none;
+            z-index: 10000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login/Registo -->
+    <div class="login-container" id="loginContainer">
+        <div class="logo">🌅</div>
+        <h2 class="text-center mb-4">Sunset Admin</h2>
+        
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-3" id="authTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button">Login</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button">Registar</button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- Login -->
+            <div class="tab-pane fade show active" id="login">
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-login w-100">Entrar como Admin</button>
+                    <div class="alert alert-warning mt-3 small">
+                        <strong>⚠️ Área Restrita</strong><br>
+                        Apenas para administradores autorizados.
+                    </div>
+                </form>
+            </div>
+
+            <!-- Registo -->
+            <div class="tab-pane fade" id="register">
+                <form id="registerForm">
+                    <div class="mb-3">
+                        <label class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="registerName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="registerEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" required minlength="6">
+                        <small class="text-muted">Mínimo 6 caracteres</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Confirmar Password</label>
+                        <input type="password" class="form-control" id="registerPasswordConfirm" required>
+                    </div>
+                    <button type="submit" class="btn btn-login w-100">Registar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Painel Admin -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>🎛️ Painel de Administração</h2>
+            <button class="btn btn-danger" onclick="logout()">Sair</button>
+        </div>
+
+        <div class="alert alert-success">
+            Bem-vindo, <strong id="userName"></strong>! <span id="userRole"></span>
+        </div>
+
+        <!-- Navegação Admin -->
+        <ul class="nav nav-pills mb-4">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="pill" href="#editEvent">Editar Evento</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#editDesign">Design</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#manageTickets">Bilhetes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#scanTickets">Scanner</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#analytics">Estatísticas</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- Editar Evento -->
+            <div class="tab-pane fade show active" id="editEvent">
+                <div class="edit-section">
+                    <h4>📝 Informações do Evento</h4>
+                    <form id="eventForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Título do Evento</label>
+                                <input type="text" class="form-control" id="eventTitle" value="SUNSET 2025">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Subtítulo</label>
+                                <input type="text" class="form-control" id="eventSubtitle" value="Celebre o Ano Novo na Praia da Barra">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Localização</label>
+                                <input type="text" class="form-control" id="eventLocation" value="Praia da Barra, Gafanha da Nazaré, Aveiro">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Data do Evento</label>
+                                <input type="datetime-local" class="form-control" id="eventDate" value="2025-12-31T21:00">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Preço do Bilhete (€)</label>
+                                <input type="number" class="form-control" id="ticketPrice" value="25">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Inclui</label>
+                                <input type="text" class="form-control" id="ticketIncludes" value="2 bebidas + Ovos Moles">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <textarea class="form-control" id="eventDescription" rows="3">Uma noite mágica na Praia da Barra junto ao Farol mais alto de Portugal</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">💾 Guardar Alterações</button>
+                    </form>
+                </div>
+
+                <div class="edit-section">
+                    <h4>🎭 Programa da Noite</h4>
+                    <div id="programList">
+                        <!-- Items adicionados dinamicamente -->
+                    </div>
+                    <button class="btn btn-primary mt-2" onclick="addProgramItem()">➕ Adicionar Item</button>
+                </div>
+
+                <div class="edit-section">
+                    <h4>🎉 Eventos Anteriores</h4>
+                    <div class="mb-3">
+                        <label class="form-label">Nome do Evento</label>
+                        <input type="text" class="form-control" id="pastEventName" value="W PARTY">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Localização</label>
+                        <input type="text" class="form-control" id="pastEventLocation" value="CCD de Cacia, Aveiro">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descrição</label>
+                        <textarea class="form-control" id="pastEventDescription" rows="3">Uma noite épica que ficou na memória de todos! Centenas de pessoas dançaram até ao amanhecer numa festa que uniu a comunidade de Cacia.</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Participantes</label>
+                            <input type="text" class="form-control" id="pastEventParticipants" value="+500 participantes">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">DJs</label>
+                            <input type="text" class="form-control" id="pastEventDJs" value="4 DJs">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Avaliação</label>
+                            <input type="text" class="form-control" id="pastEventRating" value="5/5 avaliação">
+                        </div>
+                    </div>
+                    <button class="btn btn-success" onclick="savePastEvent()">💾 Guardar Evento Anterior</button>
+                </div>
+
+                <div class="edit-section">
+                    <h4>🔗 Redes Sociais</h4>
+                    <div class="mb-3">
+                        <label class="form-label">Instagram</label>
+                        <input type="text" class="form-control" id="instagramUrl" value="https://www.instagram.com/sunset2025aveiro" placeholder="URL do Instagram">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">TikTok</label>
+                        <input type="text" class="form-control" id="tiktokUrl" value="https://www.tiktok.com/@sunset2025aveiro" placeholder="URL do TikTok">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Facebook</label>
+                        <input type="text" class="form-control" id="facebookUrl" value="https://www.facebook.com/sunset2025aveiro" placeholder="URL do Facebook">
+                    </div>
+                    <button class="btn btn-success" onclick="saveSocialMedia()">💾 Guardar Redes Sociais</button>
+                </div>
+            </div>
+
+            <!-- Design -->
+            <div class="tab-pane fade" id="editDesign">
+                <div class="edit-section">
+                    <h4>🎨 Cores do Tema</h4>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Cor Principal</label>
+                            <input type="color" class="form-control form-control-color" id="primaryColor" value="#667eea">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Cor Secundária</label>
+                            <input type="color" class="form-control form-control-color" id="secondaryColor" value="#764ba2">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Cor de Destaque</label>
+                            <input type="color" class="form-control form-control-color" id="accentColor" value="#ff6b6b">
+                        </div>
+                    </div>
+                    <button class="btn btn-success" onclick="applyColors()">Aplicar Cores</button>
+                </div>
+
+                <div class="edit-section">
+                    <h4>🖼️ Imagens</h4>
+                    <div class="mb-3">
+                        <label class="form-label">Logo do Evento</label>
+                        <input type="text" class="form-control" id="logoUrl" placeholder="URL da imagem">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Imagem de Fundo Hero</label>
+                        <input type="text" class="form-control" id="heroBackgroundUrl" placeholder="URL da imagem">
+                    </div>
+                    <button class="btn btn-success">Aplicar Imagens</button>
+                </div>
+            </div>
+
+            <!-- Bilhetes -->
+            <div class="tab-pane fade" id="manageTickets">
+                <div class="edit-section">
+                    <h4>🎟️ Gestão de Bilhetes</h4>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Vendidos</h5>
+                                    <h2 class="text-primary" id="totalSold">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Disponíveis</h5>
+                                    <h2 class="text-success" id="totalAvailable">500</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Receita</h5>
+                                    <h2 class="text-warning" id="totalRevenue">0€</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h5 class="mt-4">📋 Últimas Compras</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="purchasesTable">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Cliente</th>
+                                    <th>Telefone</th>
+                                    <th>Quantidade</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="purchasesList">
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">Nenhuma compra ainda</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mb-3 mt-4">
+                        <label class="form-label">Capacidade Máxima</label>
+                        <input type="number" class="form-control" id="maxCapacity" value="500">
+                    </div>
+                    <button class="btn btn-success">Atualizar Capacidade</button>
+                </div>
+            </div>
+
+            <!-- Estatísticas -->
+            <div class="tab-pane fade" id="analytics">
+                <div class="edit-section">
+                    <h4>📊 Estatísticas do Site</h4>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h6>Visitantes Hoje</h6>
+                                    <h3>342</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h6>Total Visitas</h6>
+                                    <h3>8,945</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h6>Taxa Conversão</h6>
+                                    <h3>14.2%</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h6>Partilhas Social</h6>
+                                    <h3>231</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scanner de Bilhetes -->
+            <div class="tab-pane fade" id="scanTickets">
+                <div class="edit-section">
+                    <h4>📱 Scanner de Bilhetes QR</h4>
+                    <p class="text-muted">Digitalize os bilhetes à entrada do evento</p>
+                    
+                    <div class="mb-4">
+                        <label class="form-label">Inserir Código do Bilhete Manualmente</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="manualTicketCode" placeholder="SUNSET2025-...">
+                            <button class="btn btn-primary" onclick="validateTicket()">✅ Validar</button>
+                        </div>
+                    </div>
+
+                    <div id="ticketValidationResult" class="mt-4"></div>
+
+                    <hr class="my-4">
+
+                    <h5>📋 Todos os Bilhetes Vendidos</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Evento</th>
+                                    <th>Data Compra</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allTicketsList">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">Carregando bilhetes...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="save-indicator" id="saveIndicator">
+        ✅ Alterações guardadas!
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin-system.js"></script>
+</body>
+</html>

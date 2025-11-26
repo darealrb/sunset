@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunset 2025 - Ano Novo na Praia da Barra, Aveiro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="sunset-effects.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(180deg, #ff6b6b 0%, #ff8e53 30%, #ffd93d 60%, #95e1d3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sun {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ffeb3b 0%, #ff9800 70%, #ff5722 100%);
+            border-radius: 50%;
+            animation: sunset 10s ease-in-out infinite;
+            box-shadow: 0 0 100px rgba(255, 235, 59, 0.8);
+        }
+
+        @keyframes sunset {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-50px); }
+        }
+
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .waves::before,
+        .waves::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 150px;
+            background-repeat: repeat-x;
+        }
+
+        .waves::before {
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 105, 148, 0.7) 40%, rgba(0, 105, 148, 0.9) 100%);
+            animation: wave 8s linear infinite;
+            border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+        }
+
+        .waves::after {
+            background: linear-gradient(to bottom, transparent 0%, rgba(10, 77, 104, 0.5) 50%, rgba(10, 77, 104, 0.8) 100%);
+            animation: wave 6s linear infinite reverse;
+            border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+            opacity: 0.8;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .hero p {
+            font-size: 2rem;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .countdown-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+        }
+
+        .countdown-number {
+            font-size: 4rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .event-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: white;
+        }
+
+        .event-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .party-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .beach-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #95e1d3 0%, #ffd93d 100%);
+        }
+
+        .palm-tree {
+            font-size: 6rem;
+            animation: sway 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            background: #0a0a0a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .btn-party {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            color: white;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-party:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+
+        .music-note {
+            font-size: 2rem;
+            animation: float 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .moliceiro {
+            font-size: 3rem;
+            display: inline-block;
+            animation: boat-float 3s ease-in-out infinite;
+        }
+
+        @keyframes boat-float {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-10px) rotate(-2deg); }
+            75% { transform: translateX(10px) rotate(2deg); }
+        }
+
+        .azulejo-pattern {
+            background: linear-gradient(180deg, #ffd93d 0%, #95e1d3 100%);
+        }
+
+        .farol {
+            font-size: 4rem;
+            animation: lighthouse 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes lighthouse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; text-shadow: 0 0 30px yellow; }
+        }
+
+        .event-card {
+            border: 2px solid rgba(70, 130, 180, 0.3) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4682b4, #87ceeb, #4682b4);
+        }
+
+        .ticket-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .ticket-card::before {
+            content: '🎟️';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            right: -50px;
+            top: -50px;
+            transform: rotate(-15deg);
+        }
+
+        .qr-code-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .ticket-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .status-valid {
+            background: #10b981;
+            color: white;
+        }
+
+        .status-used {
+            background: #6b7280;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="page-transition">
+        <div class="loader-moliceiro">⛵</div>
+    </div>
+
+    <!-- Hero Section com Pôr do Sol -->
+    <section class="hero" id="inicio">
+        <div class="sun"></div>
+        <div class="waves"></div>
+        <div class="hero-content">
+            <h1 style="text-shadow: 3px 3px 10px rgba(0,0,0,0.8);">🌅 SUNSET 2025 🌅</h1>
+            <p style="font-size: 2.2rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">Celebre o Ano Novo na Praia da Barra</p>
+            <p style="font-size: 1.8rem; margin-top: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">⛵ Aveiro - Veneza Portuguesa ⛵</p>
+        </div>
+    </section>
+
+    <!-- Barra de Navegação Fixa -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow" style="z-index: 1000;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#inicio">🌅 SUNSET 2025</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicos">Programa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item ms-3" id="navLoginBtn">
+                        <button class="btn btn-outline-light" onclick="openLoginModal()">
+                            🔑 Login
+                        </button>
+                    </li>
+                    <li class="nav-item ms-3" id="navUserWelcome" style="display: none;">
+                        <button class="btn btn-outline-warning me-2" onclick="openWallet()">
+                            💳 Carteira
+                        </button>
+                        <span class="text-white me-2">Olá, <strong id="navUserName"></strong>!</span>
+                        <button class="btn btn-sm btn-danger" onclick="userLogout()">Sair</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal de Login/Registo -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">🎟️ Login / Registo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs mb-3" id="loginTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="login-tab-modal" data-bs-toggle="tab" data-bs-target="#loginTab" type="button">Login</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="register-tab-modal" data-bs-toggle="tab" data-bs-target="#registerTab" type="button">Registar</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content">
+                        <!-- Login -->
+                        <div class="tab-pane fade show active" id="loginTab">
+                            <form id="userLoginForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="userLoginEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="userLoginPassword" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Registo -->
+                        <div class="tab-pane fade" id="registerTab">
+                            <form id="userRegisterForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="userRegisterName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="userRegisterEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="userRegisterPassword" required minlength="6">
+                                    <small class="text-muted">Mínimo 6 caracteres</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Confirmar Password</label>
+                                    <input type="password" class="form-control" id="userRegisterPasswordConfirm" required>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Criar Conta</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Compra de Bilhetes -->
+    <div class="modal fade" id="ticketModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h5 class="modal-title">🎟️ Comprar Bilhetes - Sunset 2025</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="ticketLoginRequired" style="display: none;">
+                        <div class="alert alert-warning">
+                            <strong>⚠️ Login Necessário</strong><br>
+                            Por favor, faça login ou crie uma conta para comprar bilhetes.
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="openLoginModal()">🔑 Fazer Login</button>
+                    </div>
+                    
+                    <div id="ticketPurchaseForm" style="display: none;">
+                        <form id="purchaseForm">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Número de Bilhetes</label>
+                                    <input type="number" class="form-control" id="ticketQuantity" min="1" max="10" value="1" onchange="updateTotal()">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Preço Unitário</label>
+                                    <input type="text" class="form-control" value="25€" readonly>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" id="ticketName" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" id="ticketPhone" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Observações (opcional)</label>
+                                <textarea class="form-control" id="ticketNotes" rows="2"></textarea>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <strong>📦 O teu bilhete inclui:</strong><br>
+                                ✅ 2 Bebidas à escolha<br>
+                                ✅ Ovos Moles de Aveiro<br>
+                                ✅ Acesso a todas as atividades<br>
+                                ✅ Fogo de artifício à meia-noite
+                            </div>
+                            
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5>Total a Pagar: <span id="totalPrice" style="color: #ff6b6b; font-size: 2rem;">25€</span></h5>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success w-100 mt-3" style="padding: 15px; font-size: 1.2rem;">
+                                💳 Confirmar Compra
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Carteira de Bilhetes -->
+    <div class="modal fade" id="walletModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <h5 class="modal-title">💳 A Minha Carteira de Bilhetes</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="walletEmpty" style="display: none;" class="text-center py-5">
+                        <div style="font-size: 5rem;">🎟️</div>
+                        <h4 class="mt-3">Ainda não tens bilhetes</h4>
+                        <p class="text-muted">Compra o teu bilhete para o Sunset 2025 e aparecerá aqui!</p>
+                        <button class="btn btn-primary mt-3" onclick="closeWallet(); openTicketPurchase();">🎊 Comprar Bilhete</button>
+                    </div>
+                    <div id="walletTickets" class="row"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Bilhete Expandido -->
+    <div class="modal fade" id="expandedTicketModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">🎫 Bilhete Sunset 2025</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center" id="expandedTicketContent">
+                    <!-- Conteúdo gerado dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contagem Regressiva -->
+    <section class="countdown-section">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-size: 3rem;">⏰ Contagem Regressiva para 2026</h2>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Dias</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eventos da Festa -->
+    <section class="event-section" id="servicos">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-size: 3rem;">🎉 Programa da Noite</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="event-card text-center">
+                        <div class="party-icon">🎵</div>
+                        <h3>DJ ao Vivo</h3>
+                        <p class="mt-3">Música eletrónica com os melhores DJs locais</p>
+                        <p class="text-warning"><strong>21:00 - 03:00</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="event-card text-center">
+                        <div class="party-icon">🎆</div>
+                        <h3>Fogo de Artifício</h3>
+                        <p class="mt-3">Espetáculo pirotécnico à meia-noite sobre o mar</p>
+                        <p class="text-warning"><strong>00:00</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="event-card text-center">
+                        <div class="party-icon">🍹</div>
+                        <h3>Bar na Praia</h3>
+                        <p class="mt-3">Cocktails tropicais e bebidas geladas</p>
+                        <p class="text-warning"><strong>20:00 - 04:00</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção Praia da Barra -->
+    <section class="beach-section azulejo-pattern">
+        <div class="container text-center">
+            <h2 class="mb-4" style="font-size: 3rem;">🏖️ Na Praia da Barra, Aveiro</h2>
+            <div class="farol">🗼</div>
+            <p style="font-size: 1.3rem; color: #1a1a2e; margin: 20px 0;">
+                <strong>Ao lado do Farol Mais Alto de Portugal!</strong>
+            </p>
+            <div class="moliceiro">⛵</div>
+            <div class="moliceiro" style="animation-delay: 0.5s;">⛵</div>
+            <div class="moliceiro" style="animation-delay: 1s;">⛵</div>
+            <p style="font-size: 1.2rem; color: #1a1a2e; margin-top: 20px;">
+                <em>"Celebre ao estilo dos Barcos Moliceiros"</em>
+            </p>
+            <div class="mt-5">
+                <div style="background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <p style="font-size: 1.5rem; color: #1a1a2e; margin: 0;">
+                        <strong style="color: #667eea;">📍 Localização:</strong> Praia da Barra, Gafanha da Nazaré, Aveiro<br>
+                        <strong style="color: #667eea;">🗼 Junto ao:</strong> Farol da Barra (66 metros de altura)<br>
+                        <strong style="color: #667eea;">🎟️ Bilhetes:</strong> <span style="font-size: 2rem; color: #ff6b6b; font-weight: bold;">25€</span> (inclui 2 bebidas + Ovos Moles de cortesia)<br>
+                        <strong style="color: #667eea;">👥 Dress Code:</strong> Casual de praia e espírito aveirense!<br>
+                        <strong style="color: #667eea;">🚗 Parking:</strong> Estacionamento gratuito disponível
+                    </p>
+                </div>
+                <button class="btn btn-party btn-party-enhanced mt-4" onclick="openTicketPurchase()">
+                    🎊 COMPRAR BILHETE 🎊
+                </button>
+                <div class="mt-4">
+                    <p style="font-size: 1.2rem; color: #1a1a2e;"><strong>Partilha com os teus amigos:</strong></p>
+                    <button class="btn btn-outline-primary mx-2" onclick="shareOnSocial('facebook')">📘 Facebook</button>
+                    <button class="btn btn-outline-info mx-2" onclick="shareOnSocial('twitter')">🐦 Twitter</button>
+                    <button class="btn btn-outline-success mx-2" onclick="shareOnSocial('whatsapp')">💬 WhatsApp</button>
+                    <a href="https://www.instagram.com/sunset2025aveiro" target="_blank" class="btn btn-outline-danger mx-2">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@sunset2025aveiro" target="_blank" class="btn btn-outline-dark mx-2">🎵 TikTok</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tradições de Aveiro -->
+    <section class="event-section">
+        <div class="container text-center">
+            <h2 class="mb-5" style="font-size: 3rem;">🥚 Sabores de Aveiro 🥚</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div style="font-size: 4rem;">🥚</div>
+                    <h4 class="text-white mt-3">Ovos Moles</h4>
+                    <p class="text-white-50">Doçaria conventual tradicional</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div style="font-size: 4rem;">🦐</div>
+                    <h4 class="text-white mt-3">Caldeirada</h4>
+                    <p class="text-white-50">Peixe fresco da ria</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div style="font-size: 4rem;">🧂</div>
+                    <h4 class="text-white mt-3">Sal das Marinhas</h4>
+                    <p class="text-white-50">Flor de sal de Aveiro</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p style="font-size: 1.3rem; color: #87ceeb;">
+                    <strong>🎁 Todos os bilhetes incluem degustação de Ovos Moles!</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Música Ambiente -->
+    <section class="event-section" id="sobre" style="background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);">
+        <div class="container text-center">
+            <h2 class="mb-5" style="font-size: 3rem;">🎶 Playlist da Noite</h2>
+            <div class="music-note">🎵</div>
+            <div class="music-note" style="animation-delay: 0.2s;">🎶</div>
+            <div class="music-note" style="animation-delay: 0.4s;">🎵</div>
+            <div class="music-note" style="animation-delay: 0.6s;">🎶</div>
+            <div class="music-note" style="animation-delay: 0.8s;">🎵</div>
+            <p class="mt-4" style="font-size: 1.3rem;">
+                House • Techno • Reggaeton • Pop • Funk
+            </p>
+        </div>
+    </section>
+
+    <!-- Eventos Anteriores -->
+    <section class="event-section" style="background: linear-gradient(180deg, #16213e 0%, #0f3460 100%);">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-size: 3rem;">🎉 Eventos Anteriores</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="event-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                        <div class="text-center">
+                            <div style="font-size: 5rem; margin-bottom: 20px;">🎊</div>
+                            <h3 style="font-size: 2.5rem; color: #fff; margin-bottom: 20px;">W PARTY</h3>
+                            <p style="font-size: 1.3rem; color: #fff; line-height: 1.8;">
+                                <strong>📍 CCD de Cacia, Aveiro</strong><br>
+                                Uma noite épica que ficou na memória de todos! Centenas de pessoas dançaram até ao amanhecer 
+                                numa festa que uniu a comunidade de Cacia. DJs locais, música ao vivo e uma energia incomparável 
+                                fizeram da W Party um sucesso absoluto.
+                            </p>
+                            <div class="mt-4">
+                                <span class="badge bg-light text-dark mx-1" style="font-size: 1rem; padding: 10px 20px;">✨ +500 participantes</span>
+                                <span class="badge bg-light text-dark mx-1" style="font-size: 1rem; padding: 10px 20px;">🎵 4 DJs</span>
+                                <span class="badge bg-light text-dark mx-1" style="font-size: 1rem; padding: 10px 20px;">⭐ 5/5 avaliação</span>
+                            </div>
+                            <p class="mt-4 text-white" style="font-size: 1.2rem; font-style: italic;">
+                                "Se gostaste da W Party, vais adorar o Sunset 2025!" 🌅
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-5" style="font-size: 1.3rem; color: #87ceeb;">
+                💫 <strong>Sunset Events</strong> - Criando memórias inesquecíveis em Aveiro desde 2024
+            </p>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer" id="contacto" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
+        <div class="container">
+            <h3>🌟 SUNSET 2025 - AVEIRO 🌟</h3>
+            <div class="moliceiro mt-3">⛵</div>
+            <p class="mt-3">Uma produção de eventos inesquecíveis na Veneza Portuguesa</p>
+            <p>📧 aveiro@sunset2025.pt | 📱 +351 234 567 890</p>
+            
+            <div class="mt-3">
+                <a href="https://www.instagram.com/sunset2025aveiro" target="_blank" class="btn btn-outline-light mx-2" style="border-radius: 50px;">
+                    📸 Instagram
+                </a>
+                <a href="https://www.tiktok.com/@sunset2025aveiro" target="_blank" class="btn btn-outline-light mx-2" style="border-radius: 50px;">
+                    🎵 TikTok
+                </a>
+            </div>
+            
+            <p class="mt-3">
+                <strong>🗼 Praia da Barra | 🏛️ Aveiro | ⛵ Moliceiros | 🥚 Ovos Moles</strong>
+            </p>
+            <p class="mt-4">&copy; 2025 Sunset Events Aveiro. Todos os direitos reservados.</p>
+            <p class="mt-2">🎉 Vamos fazer desta passagem de ano a melhor de sempre na Praia da Barra! 🎉</p>
+            <p class="text-info mt-3"><small>Transfer disponível desde o centro de Aveiro</small></p>
+        </div>
+    </footer>
+
+    <!-- Container para Fogos de Artifício -->
+    <div class="fireworks" id="fireworks"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="admin-system.js"></script>
+    <script src="sunset-effects.js"></script>
+    <script>
+        // Carregar atualizações do admin
+        window.addEventListener('load', () => {
+            const updateScript = localStorage.getItem('sunset_update_script');
+            if (updateScript) {
+                try {
+                    eval(updateScript);
+                } catch (e) {
+                    console.error('Erro ao aplicar atualizações:', e);
+                }
+            }
+        });
+
+        // Contagem regressiva para Ano Novo 2026
+        function updateCountdown() {
+            const newYear = new Date('January 1, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = newYear - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<h2>🎉 FELIZ ANO NOVO 2026! 🎉</h2>';
+                triggerFireworks();
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Fogos de Artifício
+        function triggerFireworks() {
+            const fireworksContainer = document.getElementById('fireworks');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#ffd93d', '#6c5ce7', '#a29bfe'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createFirework(fireworksContainer, colors);
+                }, i * 100);
+            }
+        }
+
+        function createFirework(container, colors) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.5;
+            
+            for (let i = 0; i < 30; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = x + 'px';
+                firework.style.top = y + 'px';
+                firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / 30;
+                const velocity = 50 + Math.random() * 100;
+                firework.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+                firework.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+                
+                container.appendChild(firework);
+                
+                setTimeout(() => firework.remove(), 1000);
+            }
+        }
+
+        // Fogos automáticos ao carregar
+        setTimeout(() => {
+            triggerFireworks();
+        }, 1000);
+
+        // ========================
+        // SISTEMA DE LOGIN PARA UTILIZADORES
+        // ========================
+        
+        let loginModal, ticketModal;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            ticketModal = new bootstrap.Modal(document.getElementById('ticketModal'));
+            
+            checkUserLogin();
+            
+            // Form de login
+            document.getElementById('userLoginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('userLoginEmail').value;
+                const password = document.getElementById('userLoginPassword').value;
+                
+                try {
+                    const session = loginUser(email, password);
+                    
+                    // Redirecionar admin para painel
+                    if (session.role === 'admin') {
+                        window.location.href = 'admin.html';
+                        return;
+                    }
+                    
+                    alert(`Bem-vindo, ${session.name}!`);
+                    loginModal.hide();
+                    checkUserLogin();
+                } catch (error) {
+                    alert('Erro: ' + error.message);
+                }
+            });
+            
+            // Form de registo
+            document.getElementById('userRegisterForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('userRegisterName').value;
+                const email = document.getElementById('userRegisterEmail').value;
+                const password = document.getElementById('userRegisterPassword').value;
+                const passwordConfirm = document.getElementById('userRegisterPasswordConfirm').value;
+                
+                if (password !== passwordConfirm) {
+                    alert('As passwords não coincidem!');
+                    return;
+                }
+                
+                try {
+                    registerUser(name, email, password);
+                    alert('Conta criada com sucesso! Pode fazer login agora.');
+                    document.getElementById('login-tab-modal').click();
+                    document.getElementById('userRegisterForm').reset();
+                } catch (error) {
+                    alert('Erro: ' + error.message);
+                }
+            });
+            
+            // Form de compra
+            document.getElementById('purchaseForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const quantity = document.getElementById('ticketQuantity').value;
+                const total = quantity * 25;
+                
+                const purchase = {
+                    userId: getCurrentSession().userId,
+                    userName: document.getElementById('ticketName').value,
+                    phone: document.getElementById('ticketPhone').value,
+                    quantity: quantity,
+                    total: total,
+                    notes: document.getElementById('ticketNotes').value,
+                    date: new Date().toISOString()
+                };
+                
+                // Gerar bilhetes com QR codes únicos
+                const tickets = [];
+                for (let i = 0; i < quantity; i++) {
+                    const ticketId = generateTicketId();
+                    tickets.push({
+                        id: ticketId,
+                        qrData: `SUNSET2025-${ticketId}`,
+                        purchaseDate: new Date().toISOString(),
+                        status: 'valid',
+                        userName: purchase.userName,
+                        eventName: 'SUNSET 2025',
+                        eventDate: '31/12/2025',
+                        location: 'Praia da Barra, Aveiro'
+                    });
+                }
+                
+                purchase.tickets = tickets;
+                
+                // Guardar compra
+                const purchases = JSON.parse(localStorage.getItem('sunset_purchases') || '[]');
+                purchases.push(purchase);
+                localStorage.setItem('sunset_purchases', JSON.stringify(purchases));
+                
+                // Guardar bilhetes do utilizador
+                const userTickets = JSON.parse(localStorage.getItem(`sunset_tickets_${purchase.userId}`) || '[]');
+                userTickets.push(...tickets);
+                localStorage.setItem(`sunset_tickets_${purchase.userId}`, JSON.stringify(userTickets));
+                
+                ticketModal.hide();
+                createConfetti();
+                alert(`🎉 Compra confirmada!\n\n${quantity} bilhete(s) - Total: ${total}€\n\nOs teus bilhetes estão na carteira!\n\nObrigado e até breve na Praia da Barra! 🌅`);
+                document.getElementById('purchaseForm').reset();
+            });
+        });
+        
+        function checkUserLogin() {
+            const session = getCurrentSession();
+            if (session && session.role !== 'admin') {
+                document.getElementById('navLoginBtn').style.display = 'none';
+                document.getElementById('navUserWelcome').style.display = 'block';
+                document.getElementById('navUserName').textContent = session.name;
+            } else if (!session) {
+                document.getElementById('navLoginBtn').style.display = 'block';
+                document.getElementById('navUserWelcome').style.display = 'none';
+            }
+        }
+        
+        function openLoginModal() {
+            loginModal.show();
+        }
+        
+        function openTicketPurchase() {
+            const session = getCurrentSession();
+            
+            // Se não está logado ou é admin, obrigar a fazer login
+            if (!session || session.role === 'admin') {
+                alert('⚠️ Por favor, faça login para comprar bilhetes!');
+                openLoginModal();
+                return;
+            }
+            
+            // Garantir que o modal está inicializado
+            if (!ticketModal) {
+                ticketModal = new bootstrap.Modal(document.getElementById('ticketModal'));
+            }
+            
+            // Utilizador autenticado - mostrar formulário de compra
+            document.getElementById('ticketLoginRequired').style.display = 'none';
+            document.getElementById('ticketPurchaseForm').style.display = 'block';
+            document.getElementById('ticketName').value = session.name;
+            
+            ticketModal.show();
+        }
+        
+        function userLogout() {
+            logout();
+            checkUserLogin();
+        }
+        
+        function updateTotal() {
+            const quantity = document.getElementById('ticketQuantity').value;
+            const total = quantity * 25;
+            document.getElementById('totalPrice').textContent = total + '€';
+        }
+        
+        // ========================
+        // SISTEMA DE CARTEIRA E QR CODES
+        // ========================
+        
+        let walletModal;
+        
+        function generateTicketId() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 10000);
+            return `${timestamp}${random}`;
+        }
+        
+        function openWallet() {
+            if (!walletModal) {
+                walletModal = new bootstrap.Modal(document.getElementById('walletModal'));
+            }
+            
+            const session = getCurrentSession();
+            if (!session) {
+                alert('⚠️ Faça login para ver a sua carteira!');
+                return;
+            }
+            
+            loadWalletTickets(session.userId);
+            walletModal.show();
+        }
+        
+        function closeWallet() {
+            if (walletModal) {
+                walletModal.hide();
+            }
+        }
+        
+        function loadWalletTickets(userId) {
+            const tickets = JSON.parse(localStorage.getItem(`sunset_tickets_${userId}`) || '[]');
+            const container = document.getElementById('walletTickets');
+            const emptyDiv = document.getElementById('walletEmpty');
+            
+            console.log('=== CARREGANDO CARTEIRA ===');
+            console.log('User ID:', userId);
+            console.log('Número de bilhetes:', tickets.length);
+            console.log('Bilhetes:', tickets);
+            
+            if (tickets.length === 0) {
+                console.log('Nenhum bilhete encontrado - mostrando mensagem vazia');
+                emptyDiv.style.display = 'block';
+                container.innerHTML = '';
+                return;
+            }
+            
+            console.log('Renderizando', tickets.length, 'bilhetes...');
+            
+            emptyDiv.style.display = 'none';
+            container.innerHTML = '';
+            
+            tickets.forEach((ticket, index) => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 mb-4';
+                
+                const statusClass = ticket.status === 'valid' ? 'status-valid' : 'status-used';
+                const statusText = ticket.status === 'valid' ? '✅ Válido' : '❌ Usado';
+                
+                // Criar elementos manualmente
+                const ticketCard = document.createElement('div');
+                ticketCard.className = 'ticket-card';
+                
+                const row = document.createElement('div');
+                row.className = 'row';
+                
+                // Coluna esquerda - info
+                const colInfo = document.createElement('div');
+                colInfo.className = 'col-md-8';
+                colInfo.innerHTML = `
+                    <h4>🎟️ Bilhete #${index + 1}</h4>
+                    <p style="margin: 5px 0;"><strong>Evento:</strong> ${ticket.eventName}</p>
+                    <p style="margin: 5px 0;"><strong>Data:</strong> ${ticket.eventDate}</p>
+                    <p style="margin: 5px 0;"><strong>Local:</strong> ${ticket.location}</p>
+                    <p style="margin: 5px 0;"><strong>Nome:</strong> ${ticket.userName}</p>
+                    <p style="margin: 5px 0;"><strong>ID:</strong> <code>${ticket.id}</code></p>
+                    <span class="ticket-status ${statusClass}">${statusText}</span>
+                `;
+                
+                // Coluna direita - QR e botões
+                const colQR = document.createElement('div');
+                colQR.className = 'col-md-4 text-center';
+                
+                // Container QR
+                const qrContainer = document.createElement('div');
+                qrContainer.className = 'qr-code-container';
+                qrContainer.style.cursor = 'pointer';
+                const qrDiv = document.createElement('div');
+                qrDiv.id = `qrcode-${ticket.id}`;
+                qrContainer.appendChild(qrDiv);
+                colQR.appendChild(qrContainer);
+                
+                console.log('A criar botões para bilhete:', ticket.id);
+                
+                // Botão Expandir
+                const btnExpand = document.createElement('button');
+                btnExpand.className = 'btn btn-sm btn-primary mt-2 me-1';
+                btnExpand.innerHTML = '🔍 Expandir';
+                btnExpand.type = 'button';
+                btnExpand.style.pointerEvents = 'auto';
+                
+                // Guardar ID no botão
+                btnExpand.setAttribute('data-ticket-id', ticket.id);
+                
+                btnExpand.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const ticketId = this.getAttribute('data-ticket-id');
+                    console.log('=== BOTÃO EXPANDIR CLICADO ===');
+                    console.log('Ticket ID:', ticketId);
+                    alert('Expandir clicado para: ' + ticketId);
+                    if (typeof window.expandTicket === 'function') {
+                        window.expandTicket(ticketId);
+                    } else {
+                        console.error('expandTicket não é uma função!');
+                        alert('Erro: expandTicket não encontrada!');
+                    }
+                });
+                
+                console.log('Botão Expandir criado:', btnExpand);
+                colQR.appendChild(btnExpand);
+                
+                // Botão Download  
+                const btnDownload = document.createElement('button');
+                btnDownload.className = 'btn btn-sm btn-success mt-2';
+                btnDownload.innerHTML = '📥 Download';
+                btnDownload.type = 'button';
+                btnDownload.style.pointerEvents = 'auto';
+                
+                // Guardar ID no botão
+                btnDownload.setAttribute('data-ticket-id', ticket.id);
+                
+                btnDownload.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const ticketId = this.getAttribute('data-ticket-id');
+                    console.log('=== BOTÃO DOWNLOAD CLICADO ===');
+                    console.log('Ticket ID:', ticketId);
+                    alert('Download clicado para: ' + ticketId);
+                    if (typeof window.downloadTicket === 'function') {
+                        window.downloadTicket(ticketId);
+                    } else {
+                        console.error('downloadTicket não é uma função!');
+                        alert('Erro: downloadTicket não encontrada!');
+                    }
+                });
+                
+                console.log('Botão Download criado:', btnDownload);
+                colQR.appendChild(btnDownload);
+                
+                console.log('Botões adicionados ao DOM');
+                
+                // Montar estrutura
+                row.appendChild(colInfo);
+                row.appendChild(colQR);
+                ticketCard.appendChild(row);
+                col.appendChild(ticketCard);
+                container.appendChild(col);
+                
+                // Gerar QR code
+                setTimeout(() => {
+                    new QRCode(document.getElementById(`qrcode-${ticket.id}`), {
+                        text: ticket.qrData,
+                        width: 150,
+                        height: 150,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                }, 100);
+            });
+        }
+        
+        function expandTicket(ticketId) {
+            console.log('expandTicket chamado com ID:', ticketId);
+            const session = getCurrentSession();
+            if (!session) {
+                alert('❌ Sessão não encontrada!');
+                return;
+            }
+            const tickets = JSON.parse(localStorage.getItem(`sunset_tickets_${session.userId}`) || '[]');
+            console.log('Bilhetes encontrados:', tickets.length);
+            const ticket = tickets.find(t => t.id === ticketId);
+            
+            if (!ticket) {
+                alert('❌ Bilhete não encontrado!');
+                console.error('Ticket ID não encontrado:', ticketId);
+                return;
+            }
+            console.log('Bilhete encontrado:', ticket);
+            
+            const statusClass = ticket.status === 'valid' ? 'status-valid' : 'status-used';
+            const statusText = ticket.status === 'valid' ? '✅ Válido' : '❌ Usado';
+            
+            const content = `
+                <div style="background: white; color: #333; padding: 30px; border-radius: 15px; margin: 20px 0;">
+                    <h3 style="color: #667eea; margin-bottom: 20px;">🎟️ ${ticket.eventName}</h3>
+                    <div style="text-align: left; font-size: 1.1rem; line-height: 2;">
+                        <p><strong>Nome:</strong> ${ticket.userName}</p>
+                        <p><strong>Data:</strong> ${ticket.eventDate}</p>
+                        <p><strong>Local:</strong> ${ticket.location}</p>
+                        <p><strong>ID:</strong> <code style="background: #f0f0f0; padding: 5px 10px; border-radius: 5px;">${ticket.id}</code></p>
+                    </div>
+                    <span class="ticket-status ${statusClass}" style="display: inline-block; margin-top: 15px;">${statusText}</span>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 15px; display: inline-block;">
+                    <div id="expandedQR-${ticketId}"></div>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem;">Apresente este QR code à entrada do evento</p>
+                <button class="btn btn-success mt-3" onclick="downloadTicketImage('${ticketId}')">
+                    📥 Fazer Download do Bilhete
+                </button>
+            `;
+            
+            document.getElementById('expandedTicketContent').innerHTML = content;
+            
+            const expandedModal = new bootstrap.Modal(document.getElementById('expandedTicketModal'));
+            expandedModal.show();
+            
+            console.log('Modal expandido aberto, a gerar QR code...');
+            
+            // Gerar QR code expandido
+            setTimeout(() => {
+                const qrContainer = document.getElementById(`expandedQR-${ticketId}`);
+                if (qrContainer) {
+                    console.log('Gerando QR code expandido para:', ticket.qrData);
+                    new QRCode(qrContainer, {
+                        text: ticket.qrData,
+                        width: 300,
+                        height: 300,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                    console.log('QR code expandido gerado!');
+                } else {
+                    console.error('Container do QR expandido não encontrado!');
+                }
+            }, 300);
+        }
+        
+        function downloadTicket(ticketId) {
+            console.log('downloadTicket chamado com ID:', ticketId);
+            const session = getCurrentSession();
+            if (!session) {
+                alert('❌ Faça login primeiro!');
+                return;
+            }
+            const tickets = JSON.parse(localStorage.getItem(`sunset_tickets_${session.userId}`) || '[]');
+            console.log('Bilhetes do utilizador:', tickets.length);
+            const ticket = tickets.find(t => t.id === ticketId);
+            
+            if (!ticket) {
+                alert('❌ Bilhete não encontrado!');
+                console.error('ID procurado:', ticketId, 'IDs disponíveis:', tickets.map(t => t.id));
+                return;
+            }
+            console.log('A fazer download do bilhete:', ticket);
+            
+            // Obter o QR code como imagem
+            const qrElement = document.getElementById(`qrcode-${ticketId}`);
+            console.log('Elemento QR encontrado:', qrElement);
+            if (!qrElement) {
+                alert('⚠️ QR code não encontrado! ID: qrcode-' + ticketId);
+                return;
+            }
+            
+            const qrCanvas = qrElement.querySelector('canvas');
+            const qrImg = qrElement.querySelector('img');
+            console.log('Canvas encontrado:', qrCanvas, 'Img encontrada:', qrImg);
+            
+            if (qrCanvas) {
+                // Usar canvas se disponível
+                try {
+                    console.log('Tentando converter canvas para imagem...');
+                    const dataUrl = qrCanvas.toDataURL('image/png');
+                    const a = document.createElement('a');
+                    a.href = dataUrl;
+                    a.download = `qrcode-sunset2025-${ticket.id.substring(0, 8)}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    console.log('Download iniciado com sucesso!');
+                    alert('✅ Download iniciado!');
+                } catch (e) {
+                    console.error('Erro ao fazer download:', e);
+                    alert('❌ Erro ao fazer download: ' + e.message);
+                }
+            } else if (qrImg) {
+                // Usar imagem se canvas não estiver disponível
+                console.log('Usando tag img para download');
+                const a = document.createElement('a');
+                a.href = qrImg.src;
+                a.download = `qrcode-sunset2025-${ticket.id.substring(0, 8)}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                console.log('Download da imagem iniciado!');
+                alert('✅ Download iniciado!');
+            } else {
+                console.error('Nenhum canvas ou img encontrado dentro do elemento QR');
+                alert('⚠️ Aguarde o QR code carregar completamente...');
+            }
+        }
+        
+        function downloadTicketImage(ticketId) {
+            const session = getCurrentSession();
+            const tickets = JSON.parse(localStorage.getItem(`sunset_tickets_${session.userId}`) || '[]');
+            const ticket = tickets.find(t => t.id === ticketId);
+            
+            if (!ticket) {
+                alert('❌ Bilhete não encontrado!');
+                return;
+            }
+            
+            // Obter o QR code expandido
+            const qrElement = document.getElementById(`expandedQR-${ticketId}`);
+            if (!qrElement) {
+                alert('⚠️ QR code não encontrado!');
+                return;
+            }
+            
+            const qrCanvas = qrElement.querySelector('canvas');
+            const qrImg = qrElement.querySelector('img');
+            
+            if (!qrCanvas && !qrImg) {
+                alert('⚠️ Aguarde o QR code carregar...');
+                return;
+            }
+            
+            // Criar canvas maior para o bilhete completo
+            const canvas = document.createElement('canvas');
+            canvas.width = 800;
+            canvas.height = 600;
+            const ctx = canvas.getContext('2d');
+            
+            // Fundo gradiente
+            const gradient = ctx.createLinearGradient(0, 0, 800, 600);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 800, 600);
+            
+            // Área branca para informações
+            ctx.fillStyle = 'white';
+            ctx.fillRect(50, 50, 700, 500);
+            
+            // Texto do bilhete
+            ctx.fillStyle = '#667eea';
+            ctx.font = 'bold 40px Arial';
+            ctx.fillText('SUNSET 2025', 80, 110);
+            
+            ctx.fillStyle = '#333';
+            ctx.font = '24px Arial';
+            ctx.fillText(`Nome: ${ticket.userName}`, 80, 170);
+            ctx.fillText(`Data: ${ticket.eventDate}`, 80, 210);
+            ctx.fillText(`Local: ${ticket.location}`, 80, 250);
+            
+            ctx.font = '18px Arial';
+            const shortId = ticket.id.substring(0, 20);
+            ctx.fillText(`ID: ${shortId}...`, 80, 290);
+            
+            const statusText = ticket.status === 'valid' ? 'VALIDO' : 'USADO';
+            ctx.font = 'bold 28px Arial';
+            ctx.fillStyle = ticket.status === 'valid' ? '#10b981' : '#6b7280';
+            ctx.fillText(statusText, 80, 340);
+            
+            // Função para completar o download
+            const completeDownload = () => {
+                try {
+                    const dataUrl = canvas.toDataURL('image/png');
+                    const a = document.createElement('a');
+                    a.href = dataUrl;
+                    a.download = `bilhete-sunset2025-${ticket.id.substring(0, 8)}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                } catch (e) {
+                    console.error('Erro ao fazer download:', e);
+                    alert('❌ Erro ao fazer download do bilhete.');
+                }
+            };
+            
+            // Desenhar QR code
+            if (qrCanvas) {
+                ctx.drawImage(qrCanvas, 450, 150, 280, 280);
+                completeDownload();
+            } else if (qrImg) {
+                const img = new Image();
+                img.onload = () => {
+                    ctx.drawImage(img, 450, 150, 280, 280);
+                    completeDownload();
+                };
+                img.src = qrImg.src;
+            }
+        }
+        
+        window.openLoginModal = openLoginModal;
+        window.openTicketPurchase = openTicketPurchase;
+        window.userLogout = userLogout;
+        window.openWallet = openWallet;
+        window.closeWallet = closeWallet;
+        window.expandTicket = expandTicket;
+        window.downloadTicket = downloadTicket;
+        window.downloadTicketImage = downloadTicketImage;
+    </script>
+</body>
+</html>
